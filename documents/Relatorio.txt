@@ -1,0 +1,100 @@
+No Windows power shell executar o código:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+A3/Api 
+npm init -y
+yarn add express nodemon mysql2 cors
+
+
+CONFIGURAÇÃO DO BANCO DE DADOS
+
+-Instale o Docker desktop
+-Power Shell 
+1- doker pull mysql
+
+2- docker run -p 3306:3306 --name loja_db -e MYSQL_ROOT_PASSWORD=admin4 -d mysql:8.0
+
+docker exec -it loja_db mysql -u root -p
+SELECT VERSION();
+SHOW PLUGINS;
+
+
+Definindo Entidades
+
+Cliente
+id, nome, data_nascimento, email, numero_tel
+
+Vendedor
+id, nome, data_nascimento, email, numero_tel, cod_matricula
+
+Produto
+id, nome_produto, descricao, quantidade, preco
+
+Compra
+id, produto_id, vendedor_id, cliente_id, quantidade status
+
+Query abaixo:
+
+create database loja_db;
+use loja_db;
+
+CREATE TABLE cliente(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    data_nascimento DATE,
+    email VARCHAR(255),
+    numero_tel BIGINT
+);
+
+CREATE TABLE vendedor(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    data_nascimento DATE,
+    email VARCHAR(255),
+    numero_tel BIGINT,
+    cod_matricula VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE produto(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255),
+    quantidade BIGINT NOT NULL,
+    preco BIGINT NOT NULL
+);
+
+/*Executar esta query após a execução das 3 primeiras por conta da dependencia das chaves estrangeiras*/
+CREATE TABLE compra (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT NOT NULL,
+    vendedor_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES cliente(id),
+    FOREIGN KEY (vendedor_id) REFERENCES vendedor(id),
+    FOREIGN KEY (produto_id) REFERENCES produto(id)
+);
+
+
+POPULANDO O BANCO:
+
+
+INSERT INTO cliente (nome, data_nascimento, email, numero_tel)
+VALUES
+    ('Maria Silva', '1990-05-15', 'maria.silva@example.com', 11987654321);
+
+INSERT INTO vendedor (nome, data_nascimento, email, cod_matricula, numero_tel)
+VALUES
+    ('José Luiz', '1990-05-15', 'jose.luiz@example.com', 001, 11988887070);
+
+INSERT INTO produto (nome, descricao, quantidade, preco)
+VALUES ("Macarrão", "Macarrão parafuso", 50, 4);
+
+/*Executar esta query após a execução das 3 primeiras por conta da dependencia das chaves estrangeiras*/
+INSERT INTO compra (cliente_id, vendedor_id, produto_id, quantidade)
+VALUES (1,1,1,5);
+
+
+
+
+
