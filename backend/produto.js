@@ -44,7 +44,12 @@ async function fetchData() {
             row.appendChild(cellDescricao);
 
             const cellQuantidade = document.createElement('td');
-            cellQuantidade.textContent = item.quantidade;
+
+            if(item.quantidade == 0 ){
+                cellQuantidade.textContent = `Esgotado`;
+            }else{
+                cellQuantidade.textContent = item.quantidade;
+            }
             row.appendChild(cellQuantidade);
 
             const cellPreco = document.createElement('td');
@@ -111,10 +116,6 @@ async function btnAddSacolaHandler(id){
         // Converta a resposta para JSON
         const produtoData = await produtoResponse.json();
 
-
-
-      
-
         produtoData.forEach(item => {
             // Preencha o formulário com osn dados retornados (exemplo)
 
@@ -130,12 +131,10 @@ async function btnAddSacolaHandler(id){
             quantidadeSacola.addEventListener('change', function(){ 
                 const resultado = quantidadeSacola.value * item.preco;
                 const resultadoFormatado = resultado.toFixed(2);
-                total.textContent = `Total: R$ ${resultadoFormatado}`;
+                total.textContent = `${resultadoFormatado}`;
             } )
 
         })
-       
-
     } catch (error) {
         console.error('Erro:', error);
         alert('Erro ao buscar produto');
@@ -146,7 +145,7 @@ async function btnAddSacolaHandler(id){
 function alertMessage(message){
     alert(message);
     setTimeout(
-        location.reload(),1000
+        location.reload(),2000
     )
 }
 
@@ -173,23 +172,32 @@ async function postData(url, data) {
 
 document.getElementById('modal2').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do formulário
-    const totalSacola = document.getElementById('totalSacola').textContent;
-    const clienteId = document.getElementById('clienteNome').value;
-    const vendedorId = document.getElementById('vendedorNome').value;
-    const quantidadeProduto = document.getElementById('quantidadeSacola').value;
-    if (clienteId === "0" || vendedorId === "0") {
+    const totalSacola = parseFloat(document.getElementById('totalSacola').textContent);
+    const clienteId = Number(document.getElementById('clienteNome').value);
+    const vendedorId = Number(document.getElementById('vendedorNome').value);
+    const quantidadeProduto = Number(document.getElementById('quantidadeSacola').value);
+    if (clienteId === 0 || vendedorId === 0) {
         alert("Por favor, selecione um cliente e um vendedor.");
         return;
     }
 
-    const produtoId = document.getElementById('idProdutoSacola').textContent;
+    const produtoId = Number(document.getElementById('idProdutoSacola').textContent);
     
-    console.log(vendedorId);
-    console.log(clienteId);
-    console.log(produtoId);
-    console.log(quantidadeProduto);
-    console.log(totalSacola);
-})  
+
+    const compraData = {
+        cliente_id: clienteId,
+        vendedor_id: vendedorId,
+        produto_id: produtoId,
+        quantidade: quantidadeProduto,
+        total: totalSacola
+    };
+
+    console.log(compraData);
+    
+    // Chama a função postData para enviar os dados
+    postData(api + '/addCompra', compraData); // Altere a URL conforme a necessidade
+    
+});  
 
 // Manipulador de envio do formulário
 document.getElementById('produtoForm').addEventListener('submit', function(event) {
