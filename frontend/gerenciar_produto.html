@@ -95,8 +95,8 @@
 <!-- Modal (caixa de diálogo com o formulário) -->
 <div id="modal" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeForm()">&times;</span>
-        <button onclick="closeForm()">&times;</button>
+        <span class="close" onclick="closeForm('modal')">&times;</span>
+        <button onclick="closeForm('modal')">&times;</button>
         <h2>Editar Produto</h2>
         <form id="ProdutoEditForm">
             <label for="nome">Nome:</label>
@@ -112,7 +112,7 @@
             <input type="text" id="editarPreco" name="preco" required><br>
 
             <input type="submit" value="Salvar">
-            <button type="button" onclick="closeForm()">Cancelar</button>
+            <button type="button" onclick="closeForm('modal')">Cancelar</button>
         </form>
     </div>
 </div>
@@ -120,14 +120,27 @@
 <!-- Modal (caixa de diálogo com o formulário) -->
 <div id="modal2" class="modal">
     <div class="modal-content">
-        <span class="close" onclick="closeForm()">&times;</span>
-        <button onclick="closeForm()">&times;</button>
+        <span class="close" onclick="closeForm('modal2')">&times;</span>
+        <button onclick="closeForm('modal2')">&times;</button>
         <h2>Sacola</h2>
         <form id="produtoSacola">
-            
-
-            <input type="submit" value="Salvar">
-            <button type="button" onclick="closeForm()">Cancelar</button>
+            <label for="vendedorNome">Vendedor:</label>
+            <select name="vendedorNome" id="vendedorNome">
+                <option value="0" selected> - Selecione -</option>
+            </select> | 
+            <label for="clienteNome">Cliente:</label>
+            <select name="clienteNome" id="clienteNome" >
+                <option value="0" selected> - Selecione -</option>
+            </select>
+            <hr>
+            <p id="idProdutoSacola"></p>
+            <p id="nomeProdutoSacola"></p>
+            <p id="precoProdutoSacola"></p>
+            <label for="quantidadeSacola">Quantidade:</label>
+            <input name="quantidadeSacola" type="number" id="quantidadeSacola" min="1"> <br>
+            <h2 id="totalSacola">Total: R$ 0</h2>
+            <input type="submit" value="Finalizar">
+            <button type="button" onclick="closeForm('modal2')">Cancelar</button>
         </form>
     </div>
 </div>
