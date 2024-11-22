@@ -75,6 +75,37 @@ CREATE TABLE compra (
     FOREIGN KEY (produto_id) REFERENCES produto(id)
 );
 
+DELIMITER //
+
+CREATE TRIGGER after_insert_compra
+AFTER INSERT ON compra
+FOR EACH ROW
+BEGIN
+    UPDATE produto
+    SET quantidade = quantidade - NEW.quantidade
+    WHERE id = NEW.produto_id;
+END;
+//
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE TRIGGER after_delete_compra
+AFTER DELETE ON compra
+FOR EACH ROW
+BEGIN
+    UPDATE produto
+    SET quantidade = quantidade + OLD.quantidade
+    WHERE id = OLD.produto_id;
+END;
+//
+
+DELIMITER ;
+
+
+
 
 POPULANDO O BANCO:
 
@@ -94,6 +125,15 @@ VALUES ("Macarrão", "Macarrão parafuso", 50, 4);
 INSERT INTO compra (cliente_id, vendedor_id, produto_id, quantidade)
 VALUES (1,1,1,5);
 
+
+
+LÓGICA DA COMPRA E CONTROLE DO ESTOQUE
+
+TABELA DE ITENS 
+
+PRODUTO 1	|	DESCRICAO	|	QUANTIDADE	|	PREÇO	|	ADICIONAR A SACOLA	|
+
+modal de adicionar quantidade 
 
 
 

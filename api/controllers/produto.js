@@ -10,6 +10,18 @@ export const getProduto = (_, res) => {
     });
 };
 
+export const getProdutoByQuantidade = (req, res) => {
+    const query = "SELECT * FROM produto" 
+                    + " WHERE `quantidade` <= ?";
+
+    db.query(query, [req.params.quantidade], (err, data) => {
+        if (err) return res.json(err);
+
+        return res.status(200).json(data);
+    });
+};
+
+
 export const getProdutoById = (req, res) => {
     const query = "SELECT * FROM produto WHERE `id` = ?";
 

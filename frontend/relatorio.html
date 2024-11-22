@@ -16,5 +16,30 @@
             <li><a href="relatorio.html">Relatórios</a></li>
         </ul>
     </nav>
+    <hr>
+    <section>
+        <h2>Relatórios</h2>
+        <form id="relatorio-form">
+            <label for="relatorioOp">Qual relatório você quer gerar?</label>
+            <select name="relatorioOp" id="relatorio">
+                <option value="0" selected>- Selecione -</option>
+                <option value="1">Produto mais vendido</option>
+                <option value="2">Produto por cliente</option>
+                <option value="3">Consumo médio do cliente</option>
+                <option value="4">Produtos esgotados ou em baixo estoque</option>
+            </select>
+            <input type="submit" value="Gerar" id="btnGerar">
+        </form>
+        <button id="btnRecarregar" onclick="location.reload()" style="display: none">Gerar outro relatório</button>
+    </section>
+
+    <section>
+        <table id="relatorio-table" border="">
+            <tr id="cabecalho-table"></tr>
+            <!--Linhas serão adicionadas dinamicamente-->
+        </table>
+    </section>
+
+    <script src="../backend/relatorio.js"></script>
 </body>
 </html>
