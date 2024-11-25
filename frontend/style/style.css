@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo para o container da navbar */
+.nav-links {
+    display: flex; /* Configura o container como Flexbox */
+    justify-content: space-around; /* Espaça os itens igualmente */
+    align-items: center; /* Alinha os itens verticalmente */
+    background-color: #333; /* Cor de fundo da navbar (opcional) */
+    padding: 15px 0; /* Espaçamento interno vertical (opcional) */
+}
+
+/* Remove a estilização padrão da lista */
+.nav-links ul {
+    display: flex; /* Configura a lista como Flexbox */
+    list-style: none; /* Remove os marcadores da lista */
+    margin: 0; /* Remove margens */
+    padding: 0; /* Remove espaçamento interno */
+}
+
+/* Estilo para os itens da lista */
+.nav-links ul li {
+    margin: 0 15px; /* Espaçamento horizontal entre os itens */
+}
+
+/* Estilo para os links */
+.nav-links ul li a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: white; /* Cor do texto */
+    font-size: 20px; /* Tamanho da fonte */
+    transition: color 0.3s; /* Animação suave para hover */
+}
+
+.nav-links ul li a:hover {
+    color: #00aced; /* Cor do link ao passar o mouse */
+}
+
+/* Estilo do container do formulário */
+.cadastro-forms {
+    display: flex; /* Torna o container flexível */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    background-color: white; /* Fundo branco */
+    padding: 30px; /* Espaçamento interno */
+    margin: 50px auto; /* Espaçamento superior e centralização */
+    width: 40%; /* Largura ajustável */
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+/* Estilo para o título */
+.cadastro-forms h3 {
+    margin-bottom: 20px;
+    color: #333; /* Cor do texto */
+    font-size: 32px; /* Tamanho do título */
+    text-align: center;
+}
+
+/* Estilo dos labels */
+.cadastro-forms label {
+    align-self: flex-start; /* Alinha os labels à esquerda */
+    margin-bottom: 5px; /* Espaço abaixo do label */
+    font-size: 18px; /* Tamanho da fonte */
+    font-weight: 600;
+    color: #555; /* Cor do texto */
+}
+
+/* Estilo dos inputs */
+.cadastro-forms input[type="text"],
+.cadastro-forms input[type="date"],
+.cadastro-forms input[type="email"],
+.cadastro-forms input[type="number"],
+.cadastro-forms input[type="tel"] {
+    width: 100%; /* Preenche toda a largura do formulário */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 15px; /* Espaço entre os inputs */
+    border: 1px solid #ccc; /* Borda cinza clara */
+    border-radius: 4px; /* Borda arredondada */
+    background-color: #f9f9f9; /* Fundo leve */
+    color: #333; /* Cor do texto */
+    font-size: 14px; /* Tamanho do texto */
+}
+
+/* Estilo dos botões */
+.cadastro-forms input[type="submit"],
+.cadastro-forms button {
+    width: 48%; /* Botões ocupam metade da largura */
+    padding: 10px; /* Espaçamento interno */
+    margin-top: 15px; /* Espaço superior */
+    border: none; /* Remove bordas padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 14px; /* Tamanho do texto */
+    font-weight: 600;
+    color: white; /* Cor do texto */
+    cursor: pointer; /* Indicador de clique */
+    transition: background-color 0.3s; /* Animação suave no hover */
+}
+
+/* Botão Enviar */
+.cadastro-forms input[type="submit"] {
+    background-color: #007BFF; /* Azul claro */
+}
+
+/* Hover no botão Enviar */
+.cadastro-forms input[type="submit"]:hover {
+    background-color: #0056b3; /* Azul mais escuro */
+}
+
+/* Botão Cancelar */
+.cadastro-forms button {
+    background-color: #0056b3; /* Azul escuro */
+}
+
+/* Hover no botão Cancelar */
+.cadastro-forms button:hover {
+    background-color: #003d80; /* Azul ainda mais escuro */
+}
+
+
+/* Estilo do título */
+h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Estilo geral da tabela */
+.tabela {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #ccc; /* Cinza claro */
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Leve sombra */
+    overflow: hidden;
+}
+
+/* Cabeçalho da tabela */
+.tabela  th {
+    background-color: #f5f5f5; /* Fundo claro */
+    color: #333;
+    font-size: 18px;
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ccc; /* Divisória clara */
+}
+
+/* Células da tabela */
+.tabela tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee; /* Divisória clara */
+    color: black;
+    font-size: 22px;
+}
+
+/* Linhas alternadas */
+.tabela tbody tr:nth-child(odd) {
+    background-color: #fafafa; /* Fundo alternado */
+}
+
+.tabela tbody tr:hover {
+    background-color: #f1f1f1; /* Destaque ao passar o mouse */
+}
+
+/* Ícones de ação */
+.icon {
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 8px;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+/* Hover nos ícones */
+.icon:hover {
+    color: #007BFF; /* Azul claro */
+}
+
+/* Ícones */
+.material-icons {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+ /* Estilo do modal */
+ .modal {
+    display: none; /* Inicialmente invisível */
+    position: fixed;
+    z-index: 1; /* Fica na frente */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+}
+
+/* Estilo do conteúdo do modal */
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 100%;
+    text-align: center;
+}
+
+/* Estilo do botão de fechar (x) */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.close2 {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 230px;
+    padding: 8px;
+}
+
+.close:hover,.close2:hover,
+.close:focus,.close2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer{
+    background-color: #333;
+    color: #FFFFFF;
+    width: 100%;
+    margin-top: 20%;
+    bottom: 0;
+    padding: 25px;
+    text-align: center;
+
+}

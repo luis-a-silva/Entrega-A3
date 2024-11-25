@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
     <title>Relatórios</title>
 </head>
 <body>
-    <nav>
+    <nav class="nav-links">
         <ul>
             <li><a href="index.html">Página Inicial</a></li>
             <li><a href="gerenciar_cli.html">Painel cliente</a></li>
@@ -29,12 +30,12 @@
                 <option value="4">Produtos esgotados ou em baixo estoque</option>
             </select>
             <input type="submit" value="Gerar" id="btnGerar">
-        </form>
-        <button id="btnRecarregar" onclick="location.reload()" style="display: none">Gerar outro relatório</button>
+            <input type="button" value="Gerar outro relatório" id="btnRecarregar" onclick="location.reload()" style="display: none;"> 
+            </form>
     </section>
 
     <section>
-        <table id="relatorio-table" border="">
+        <table id="relatorio-table" border="" style="display: none;  width: max-content;">
             <tr id="cabecalho-table"></tr>
             <!--Linhas serão adicionadas dinamicamente-->
         </table>

@@ -36,7 +36,7 @@ async function fetchData() {
             row.appendChild(cellNumero);
 
             const acoesBtn = document.createElement('td');
-            acoesBtn.innerHTML = `<button onclick="btnDeleteHandler(${item.id})">Apagar</button>   |    <button id=editar onclick="btnEditarHandler(${item.id})">Editar</button>`
+            acoesBtn.innerHTML = `<button onclick="btnDeleteHandler(${item.id})" class="icon" title="Apagar"><i class="material-icons">delete</i></button><button class="icon" title="Editar" id=editar onclick="btnEditarHandler(${item.id})"><i class="material-icons">edit</i></button>`
             row.appendChild(acoesBtn);
 
             // Adicione a linha à tabela

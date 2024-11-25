@@ -1,10 +1,9 @@
 const api ="http:\\localhost:8800";
-
+const tabelaDados = document.getElementById('relatorio-table');
 
 document.getElementById('relatorio-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o comportamento padrão do formulário
     const relatorioOption = document.getElementById('relatorio').value;
-    console.log(relatorioOption);
     fetchData(relatorioOption);
     document.getElementById('btnGerar').disabled = true;
 
@@ -14,12 +13,10 @@ document.getElementById('relatorio-form').addEventListener('submit', function(ev
 async function fetchData(option){
     try {
         // Faça a requisição para a API
-        const num = 20;
-
         const consumoMediaByClienteResponse = await fetch(api + '/getConsumoMedioByCliente');
         const produtoMaisVendidoResponse = await fetch(api + '/getProdutoMaisVendido');
         const totalCompraByClienteResponse = await fetch(api + '/getTotalCompraByCliente');
-        const quantidadeRestanteResponse = await fetch(api + '/getProdutoByQuantidade/'+ num);
+        const quantidadeRestanteResponse = await fetch(api + '/getProdutoByQuantidade/' + 10);
    
         // Verifique se a resposta está ok (status 200)
         if (!consumoMediaByClienteResponse.ok) throw new Error(`Erro: ${consumoMediaByClienteResponse.statusText}`);
@@ -32,7 +29,8 @@ async function fetchData(option){
         const consumoByClienteData = await consumoMediaByClienteResponse.json();
         const produtoMaisVendidoData = await produtoMaisVendidoResponse.json();
         const totalCompraByClienteData = await totalCompraByClienteResponse.json();
-        const quantidadeRestanteData = await quantidadeRestanteData.json();
+        const quantidadeRestanteData = await quantidadeRestanteResponse.json();
+
         const headerRow = document.getElementById('cabecalho-table');
 
         if(option == 0){
@@ -40,6 +38,8 @@ async function fetchData(option){
             document.getElementById('btnGerar').disabled = false;
         } else if(option == 1){
             document.getElementById('btnRecarregar').style.display = "block";
+            tabelaDados.style.display = "block";
+
             const headerTotal = document.createElement('th');
             headerTotal.textContent = `Total de unidades vendidas`;
             headerRow.appendChild(headerTotal);
@@ -75,6 +75,9 @@ async function fetchData(option){
             });
         }else if(option == 2){
             document.getElementById('btnRecarregar').style.display = "block";
+            tabelaDados.style.display = "block";
+            
+
             const headerNome = document.createElement('th');
             headerNome.textContent = `Nome`;
             headerRow.appendChild(headerNome);
@@ -83,10 +86,7 @@ async function fetchData(option){
             headerTotal.textContent = `Total de unidades compradas`;
             headerRow.appendChild(headerTotal);
 
-            
-            
 
-              
 
             totalCompraByClienteData.forEach(item => {
                 const row = document.createElement('tr');
@@ -105,6 +105,8 @@ async function fetchData(option){
             
         }else if(option == 3){
             document.getElementById('btnRecarregar').style.display = "block";
+            tabelaDados.style.display = "block";
+            
             const headerNome = document.createElement('th');
             headerNome.textContent = `Cliente`;
             headerRow.appendChild(headerNome);
@@ -132,46 +134,41 @@ async function fetchData(option){
                 tableBody.appendChild(row);
             });
         }else if (option == 4){
-            document.getElementById('btnRecarregar').style.display = "block";
-           
-            const labelQuantidade = document.createElement('label');
-            labelQuantidade.innerText = `Insira a quantidade: `
-
-            
-            const headerProduto = document.createElement('th');
-            headerProduto.textContent = `Produto`;
-            headerRow.appendChild(headerProduto);
-
-            const headerDescricao = document.createElement('th');
-            headerDescricao.textContent = `Descrição`;
-            headerRow.appendChild(headerDescricao);
-
-            const headerTotal = document.createElement('th');
-            headerTotal.textContent = `Quantidade`;
-            headerRow.appendChild(headerTotal);
-
-            quantidadeRestanteData.forEach(item => {
-                const row = document.createElement('tr');
-           
-
-                // Preencha as células com os dados do JSON
-               
+                document.getElementById('btnRecarregar').style.display = "block";
+                tabelaDados.style.display = "block";
+                
+                const headerProduto = document.createElement('th');
+                headerProduto.textContent = `Produto`;
+                headerRow.appendChild(headerProduto);
     
-                const cellProdutoNome = document.createElement('td');
-                cellProdutoNome.textContent = item.produto_nome;
-                row.appendChild(cellProdutoNome);
+                const headerDescricao = document.createElement('th');
+                headerDescricao.textContent = `Descrição`;
+                headerRow.appendChild(headerDescricao);
     
-                const cellProdutoDescricao = document.createElement('td');
-                cellProdutoDescricao.textContent = item.produto_descricao;
-                row.appendChild(cellProdutoDescricao);
+                const headerTotal = document.createElement('th');
+                headerTotal.textContent = `Quantidade`;
+                headerRow.appendChild(headerTotal);
+    
+                quantidadeRestanteData.forEach(item => {
+                    const row = document.createElement('tr');
 
-                const cellQuantidade= document.createElement('td');
-                cellQuantidade.textContent = item.quantidade;
-                row.appendChild(cellQuantidade);
-                // Adicione a linha à tabela
+                    // Preencha as células com os dados do JSON
 
-                tableBody.appendChild(row);
-            });
+                    const cellProdutoNome = document.createElement('td');
+                    cellProdutoNome.textContent = item.nome;
+                    row.appendChild(cellProdutoNome);
+        
+                    const cellProdutoDescricao = document.createElement('td');
+                    cellProdutoDescricao.textContent = item.descricao;
+                    row.appendChild(cellProdutoDescricao);
+    
+                    const cellQuantidade= document.createElement('td');
+                    cellQuantidade.textContent = item.quantidade;
+                    row.appendChild(cellQuantidade);
+                    // Adicione a linha à tabela
+    
+                    tableBody.appendChild(row);
+                });
         }
     }catch (error) {
         console.error('Erro ao buscar dados:', error);

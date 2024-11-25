@@ -4,50 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel cliente</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* Estilo do modal */
-        .modal {
-            display: none; /* Inicialmente invisível */
-            position: fixed;
-            z-index: 1; /* Fica na frente */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
-        }
-
-        /* Estilo do conteúdo do modal */
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            text-align: center;
-        }
-
-        /* Estilo do botão de fechar (x) */
-        .close {
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+       
     </style>
 </head>
 <body>
-    <nav>
+    <nav class="nav-links">
         <ul>
             <li><a href="index.html">Página Inicial</a></li>
             <li><a href="gerenciar_cli.html">Painel cliente</a></li>
@@ -58,8 +22,8 @@
         </ul>
     </nav>
     <main>
-        <h3>Cadastrar cliente</h3>
-        <form id="clienteForm">
+        <form id="clienteForm" class="cadastro-forms">
+            <h3>Cadastrar cliente</h3>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome"><br>
             <label for="data_nasc">Data nascimento</label>
@@ -78,9 +42,9 @@
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeForm()">&times;</span>
-        <button onclick="closeForm()">&times;</button>
+        <button class="close2" onclick="closeForm()">&times;</button>
         <h2>Editar Cliente</h2>
-        <form id="clienteEditForm">
+        <form id="clienteEditForm" class="cadastro-forms">
             <label for="nome">Nome:</label>
             <input type="text" id="editarNome" name="nome" required><br>
 
@@ -100,11 +64,10 @@
 </div>
 
 
-    </div>
 
     <section>
         <h3>Usuários cadastrados na base</h3>
-        <table border="" id=data-table>
+        <table border="" id=data-table class="tabela">
             <tr>
                 <th>Nome</th>
                 <th>Data de nascimento</th>
@@ -117,9 +80,11 @@
             </tr>
         </table>
     </section>
+
     <footer>
         <p>2024 - Todos os direitos reservados ©</p>
     </footer>
+
     <script src="../backend/cliente.js"></script>
 </body>
 </html>
