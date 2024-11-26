@@ -58,7 +58,7 @@ async function fetchData() {
 
             const acoesBtn = document.createElement('td');
 
-            acoesBtn.innerHTML = `<button onclick="btnDeleteHandler(${item.id})">Apagar</button>   |    <button id=editar onclick="btnEditarHandler(${item.id})">Editar</button>    |   <button onclick="btnAddSacolaHandler(${item.id})">Adicionar a sacola</button>`
+            acoesBtn.innerHTML = `<button onclick="btnDeleteHandler(${item.id})" class="icon" title="Apagar"><i class="material-icons">delete</i></button> <button onclick="btnEditarHandler(${item.id})" class="icon" title="Editar"><i class="material-icons">edit</i></button> <button onclick="btnAddSacolaHandler(${item.id})" class="icon" title="Adicionar a sacola"><i class="material-icons">shopping_cart</i></button>`;
             row.appendChild(acoesBtn);
 
             // Adicione a linha à tabela
@@ -119,9 +119,9 @@ async function btnAddSacolaHandler(id){
         produtoData.forEach(item => {
             // Preencha o formulário com osn dados retornados (exemplo)
 
-            document.getElementById("idProdutoSacola").textContent = `${item.id}`; // Preencher id
-            document.getElementById("nomeProdutoSacola").textContent = `${item.nome}`; // Preencher nome
-            document.getElementById("precoProdutoSacola").textContent = `${item.preco}`; // Preencher nome
+            document.getElementById("idProdutoSacola").textContent = `Id: ${item.id}`; // Preencher id
+            document.getElementById("nomeProdutoSacola").textContent = `Produto: ${item.nome}`; // Preencher nome
+            document.getElementById("precoProdutoSacola").textContent = `Valor(un): R$ ${item.preco}`; // Preencher nome
 
             const quantidadeSacola = document.getElementById("quantidadeSacola");
             quantidadeSacola.setAttribute("max", item.quantidade);

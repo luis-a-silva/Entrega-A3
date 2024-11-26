@@ -19,8 +19,8 @@
     </nav>
     <hr>
     <section>
-        <h2>Relatórios</h2>
-        <form id="relatorio-form">
+        <h3>Relatórios</h3>
+        <form id="relatorio-form" class="cadastro-forms">
             <label for="relatorioOp">Qual relatório você quer gerar?</label>
             <select name="relatorioOp" id="relatorio">
                 <option value="0" selected>- Selecione -</option>
@@ -30,12 +30,12 @@
                 <option value="4">Produtos esgotados ou em baixo estoque</option>
             </select>
             <input type="submit" value="Gerar" id="btnGerar">
-            <input type="button" value="Gerar outro relatório" id="btnRecarregar" onclick="location.reload()" style="display: none;"> 
-            </form>
+            <button id="btnRecarregar" type="button" onclick="location.reload()" style="display: none;">Gerar outro relatório</button> 
+        </form>
     </section>
 
     <section>
-        <table id="relatorio-table" border="" style="display: none;  width: max-content;">
+        <table id="relatorio-table" border=""  class="tabela" style="display: none;  width: max-content;" >
             <tr id="cabecalho-table"></tr>
             <!--Linhas serão adicionadas dinamicamente-->
         </table>

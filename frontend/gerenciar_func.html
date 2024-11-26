@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Painel funcionários</title>
     
 </head>
@@ -19,12 +21,12 @@
         </ul>
     </nav>
     <main>
-        <h3>Cadastrar vendedor</h3>
-        <form id="clienteForm">
-            <label for="cod_matricula">Código de matricula</label>
-            <input type="number" name="cod_matricula" id="cod_matricula" maxlength="4"><br>
+        <form id="clienteForm" class="cadastro-forms">
+            <h3>Cadastrar vendedor</h3>
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome"><br>
+            <label for="cod_matricula">Código de matricula</label>
+            <input type="number" name="cod_matricula" id="cod_matricula" maxlength="4"><br>
             <label for="data_nasc">Data nascimento</label>
             <input type="date" name="data_nasc" id="data_nasc"><br>
             <label for="email">E-mail</label>
@@ -32,7 +34,7 @@
             <label for="numero_tel">Número telefone</label>
             <input type="number" name="numero_tel" id="numero_tel" maxlength="11"><br>
             <input type="submit" value="Enviar">
-            <button type="button">Cancelar</button>
+            <input type="reset" value="Limpar">
         </form>
     </main>
     <hr>
@@ -41,14 +43,15 @@
 <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeForm()">&times;</span>
-        <button onclick="closeForm()">&times;</button>
-        <h2>Editar Cliente</h2>
-        <form id="clienteEditForm">
-            <label for="nome">Código de matricula:</label>
-            <input type="text" id="editarCod_matricula" name="editarCod_matricula" disabled><br>
-
+        <button class="close2" onclick="closeForm()">&times;</button>
+        <h3>Editar vendedor</h3>
+        <form id="clienteEditForm" class="cadastro-forms-edit">
+            
             <label for="nome">Nome:</label>
             <input type="text" id="editarNome" name="nome" required><br>
+            
+            <label for="nome">Código de matricula:</label>
+            <input type="text" id="editarCod_matricula" name="editarCod_matricula" disabled><br>
 
             <label for="data_nasc">Data de Nascimento:</label>
             <input type="date" id="editarData_nasc" name="data_nasc" required><br>
@@ -69,8 +72,8 @@
     </div>
 
     <section>
-        <h3>Usuários cadastrados na base</h3>
-        <table border="" id=data-table>
+        <h3>Vendedores cadastrados na base</h3>
+        <table border="" id=data-table class="tabela">
             <tr>
                 <th>Cód mátricula</th>
                 <th>Nome</th>
