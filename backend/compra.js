@@ -41,7 +41,7 @@ async function fetchData() {
             row.appendChild(cellTotal);
 
             const acoesBtn = document.createElement('td');
-            acoesBtn.innerHTML = `<button onclick="btnDeleteHandler(${item.id})">Cancelar</button>`;
+            acoesBtn.innerHTML = `<button onclick="btnDeleteHandler(${item.id})" class="icon" title="Cancelar"><i class="material-icons">close</i></button>`;
             row.appendChild(acoesBtn);
 
             // Adicione a linha à tabela

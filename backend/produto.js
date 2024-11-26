@@ -119,7 +119,7 @@ async function btnAddSacolaHandler(id){
         produtoData.forEach(item => {
             // Preencha o formulário com osn dados retornados (exemplo)
 
-            document.getElementById("idProdutoSacola").textContent = `Id: ${item.id}`; // Preencher id
+            document.getElementById("idProdutoSacola").textContent = `${item.id}`; // Preencher id
             document.getElementById("nomeProdutoSacola").textContent = `Produto: ${item.nome}`; // Preencher nome
             document.getElementById("precoProdutoSacola").textContent = `Valor(un): R$ ${item.preco}`; // Preencher nome
 
