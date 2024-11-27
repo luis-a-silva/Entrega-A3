@@ -1,25 +1,47 @@
 No Windows power shell executar o código:
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
-A3/Api 
-npm init -y
-yarn add express nodemon mysql2 cors
+SOBRE O DOCKER COMPOSE
+O arquivo docker-compose.yml define dois serviços:
 
+1. API (Node.js):
+- Construída a partir do Dockerfile na pasta api
+- Expõe a porta 8800
+- Conecta-se ao banco de dados MySQL
+- Utiliza variáveis de ambiente para conexão com o banco
 
-CONFIGURAÇÃO DO BANCO DE DADOS
+2. Banco de dados (MySQL):
+- Usa a imagem oficial mysql:8.0
+- Expõe a porta 3306
+- Volume persistente para dados
+- Inicialização automática do banco
+- Healthcheck para garantir disponibilidade quando o container da API for inicializado
 
--Instale o Docker desktop
--Power Shell 
-1- doker pull mysql
+CONFIGURAÇÃO DO AMBIENTE DE DESENVOLVIMENTO
 
-2- docker run -p 3306:3306 --name loja_db -e MYSQL_ROOT_PASSWORD=admin4 -d mysql:8.0
+1. Instale o Docker Desktop
+2. Clone o repositório do projeto
+3. Na raiz do projeto, execute o Docker Compose:
 
-docker exec -it loja_db mysql -u root -p
-SELECT VERSION();
-SHOW PLUGINS;
+```bash
+docker compose -f "docker-compose.yml" up -d --build 
+```
 
+Este comando irá:
+- Construir a imagem da API Node.js
+- Criar um container MySQL
+- Configurar a rede entre os containers
+- Iniciar todos os serviços
 
-Definindo Entidades
+Para parar os containers:
+
+```bash
+docker compose down
+```
+
+ESTRUTURA DO BANCO DE DADOS
+
+Definindo Entidades:
 
 Cliente
 id, nome, data_nascimento, email, numero_tel
@@ -124,7 +146,6 @@ VALUES ("Macarrão", "Macarrão parafuso", 50, 4);
 /*Executar esta query após a execução das 3 primeiras por conta da dependencia das chaves estrangeiras*/
 INSERT INTO compra (cliente_id, vendedor_id, produto_id, quantidade)
 VALUES (1,1,1,5);
-
 
 
 LÓGICA DA COMPRA E CONTROLE DO ESTOQUE
