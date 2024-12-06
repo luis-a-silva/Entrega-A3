@@ -1,13 +1,38 @@
-services:
-  api:
+version: '3.8' # Define a versão do Docker Compose a ser usada.
+
+services: # Declara os serviços do Docker Compose.
+  api: # Serviço da API.
     build: 
-      context: ./api
-      dockerfile: Dockerfile
+      context: ./api # Diretório onde está o Dockerfile da API.
+      dockerfile: Dockerfile # Nome do Dockerfile usado para construir a imagem.
     ports:
-      - "8800:8800"
+      - "8800:8800" # Mapeia a porta 8800 do container para a porta 8800 do host.
     depends_on:
       db:
-        condition: service_healthy
+        condition: service_healthy # Aguarda o serviço db estar saudável antes de iniciar.
+    environment: # Variáveis de ambiente disponíveis no container.
+      - DB_HOST=db # Nome do host do banco de dados.
+      - DB_USER=root # Usuário do banco de dados.
+      - DB_PASSWORD=admin4 # Senha do banco de dados.
+      - DB_NAME=loja_db # Nome do banco de dados.
+    networks:
+      - default # Rede usada pelo container.
+    restart: unless-stopped # Reinicia o container automaticamente, exceto se ele for parado manualmente.
+    healthcheck: # Verifica a saúde do container.
+      test: ["CMD", "curl", "-f", "http://localhost:8800"] # Comando para checar se a API responde.
+      interval: 30s # Tempo entre verificações de saúde.
+      timeout: 10s # Tempo máximo de espera para o teste de saúde.
+      retries: 3 # Número de tentativas antes de marcar o serviço como "unhealthy".
+
+  rel: # Serviço de relatórios.
+    build: 
+      context: ./rel # Diretório onde está o Dockerfile do serviço de relatórios.
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Mapeia a porta 3000 do container para a porta 3000 do host.
+    depends_on:
+      db:
+        condition: service_healthy # Aguarda o banco de dados estar saudável antes de iniciar.
     environment:
       - DB_HOST=db
       - DB_USER=root
@@ -16,47 +41,27 @@ services:
     networks:
       - default
     restart: unless-stopped
-
-  rel:
-    build: 
-      context: ./rel
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=admin4
-      - DB_NAME=loja_db
-    networks:
-      - default
-    restart: unless-stopped
-
-  db:
-    image: mysql:8.0
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=admin4
-      - MYSQL_DATABASE=loja_db
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - default
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "curl", "-f", "http://localhost:3000"] # Testa se o serviço responde na porta 3000.
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db: # Serviço do banco de dados MySQL.
+    image: mysql:8.0 # Imagem do MySQL na versão 8.0.
+    ports:
+      - "3306:3306" # Mapeia a porta 3306 do container para a porta 3306 do host.
+    environment: # Configuração do banco de dados.
+      MYSQL_ROOT_PASSWORD: admin4 # Senha do usuário root.
+      MYSQL_DATABASE: loja_db # Nome do banco de dados inicial.
+    networks:
+      - default
     restart: unless-stopped
+    healthcheck: # Verifica a saúde do banco de dados.
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-padmin4"] # Comando para testar a conexão.
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
-networks:
-  default:
-    driver: bridge
-
-volumes:
-  mysql-data:
+networks: # Configuração da rede.
+  default: # Rede padrão onde os containers se comunicam.
