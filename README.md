@@ -1,5 +1,7 @@
-# Entrega-A3
-Este projeto entrega uma API CRUD (Create, Read, Update, Delete) construída com Node.js + Express, persistindo dados em MySQL, e empacotada com Docker, facilitando desenvolvimento, testes e entrega. É uma base robusta para aplicações back-end que exigem operações sobre banco de dados com boa escalabilidade e implantação moderna.
+# EDUGAMES-Plataforma digital de vendas
+Este projeto entrega uma API CRUD (Create, Read, Update, Delete) construída com Node.js + Express, persistindo dados em MySQL, e empacotada com Docker, facilitando desenvolvimento, testes e entrega. É uma base robusta para aplicações back-end que exigem operações sobre banco de dados com boa escalabilidade e implantação moderna.  
+
+O objetivo final deste é entregar uma plataforma digital centralizada para a venda, distribuição e gerenciamento de jogos de PC. O foco é criar um ecossistema completo para jogadores e desenvolvedores, oferecendo conveniência e recursos que vão além da simples compra. 
 
 Tecnologias:  
 Node.js – plataforma de execução JavaScript no servidor  
